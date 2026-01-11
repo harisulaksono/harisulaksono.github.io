@@ -1,0 +1,235 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Teaching in English - Unit 2 Hub</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&display=swap');
+        
+        body {
+            font-family: 'Inter', sans-serif;
+            background-color: #ffffff;
+        }
+
+        .yellow-bg { background-color: #FFD700; }
+        .yellow-text { color: #FFD700; }
+        .black-bg { background-color: #1a1a1a; }
+        
+        .flip-card {
+            background-color: transparent;
+            perspective: 1000px;
+            height: 180px;
+        }
+
+        .flip-card-inner {
+            position: relative;
+            width: 100%;
+            height: 100%;
+            text-align: center;
+            transition: transform 0.6s;
+            transform-style: preserve-3d;
+            cursor: pointer;
+        }
+
+        .flip-card.active .flip-card-inner {
+            transform: rotateY(180deg);
+        }
+
+        .flip-card-front, .flip-card-back {
+            position: absolute;
+            width: 100%;
+            height: 100%;
+            backface-visibility: hidden;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            border-radius: 0.75rem;
+            border: 2px solid #1a1a1a;
+            padding: 1rem;
+        }
+
+        .flip-card-front { background-color: #FFD700; color: #1a1a1a; }
+        .flip-card-back { background-color: #1a1a1a; color: #FFD700; transform: rotateY(180deg); }
+
+        .tab-active { border-bottom: 4px solid #FFD700; color: #FFD700; }
+
+        .tag {
+            background-color: #FFD700;
+            color: #000;
+            padding: 2px 8px;
+            border-radius: 9999px;
+            font-size: 0.65rem;
+            font-weight: bold;
+            text-transform: uppercase;
+        }
+    </style>
+</head>
+<body class="text-gray-900">
+
+    <!-- Header -->
+    <header class="black-bg text-white py-12 px-6 text-center border-b-8 border-yellow-400">
+        <h1 class="text-4xl md:text-5xl font-bold mb-2 yellow-text uppercase tracking-tight">TEACHING IN ENGLISH</h1>
+        <p class="text-xl opacity-90 italic">Unit 2: Delivering Academic Content</p>
+        <div class="mt-6 inline-block bg-yellow-400 text-black px-6 py-2 font-bold rounded-full shadow-lg">LECTURE LOGIC & DATA</div>
+    </header>
+
+    <!-- Tabs -->
+    <nav class="black-bg sticky top-0 z-50 shadow-xl">
+        <div class="max-w-4xl mx-auto flex justify-around">
+            <button onclick="switchTab('signpost')" id="tab-signpost" class="tab-btn py-4 px-4 font-bold text-white transition tab-active text-xs md:text-base">SIGNPOSTING</button>
+            <button onclick="switchTab('data')" id="tab-data" class="tab-btn py-4 px-4 font-bold text-white transition text-xs md:text-base">DATA CARDS</button>
+            <button onclick="switchTab('quiz2')" id="tab-quiz2" class="tab-btn py-4 px-4 font-bold text-white transition text-xs md:text-base">UNIT 2 QUIZ</button>
+        </div>
+    </nav>
+
+    <main class="max-w-5xl mx-auto p-6 md:p-12">
+
+        <!-- Tab 1: Signposting Sound Bank -->
+        <section id="content-signpost" class="tab-content">
+            <div class="mb-10 border-l-8 border-yellow-400 pl-6">
+                <h2 class="text-3xl font-bold">The Signposting Library</h2>
+                <p class="text-gray-600 mt-2">Listen to how professionals transition between academic ideas.</p>
+            </div>
+            
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+                <script>
+                    const signposts = [
+                        { w: "Moving on to...", p: "Used to transition to a new topic." },
+                        { w: "Specifically...", p: "Used to provide more detail." },
+                        { w: "To illustrate this...", p: "Used before an example or visual aid." },
+                        { w: "Conversely...", p: "Used to show a contrasting idea." },
+                        { w: "This leads us to...", p: "Used to show a logical result." },
+                        { w: "In summary...", p: "Used to wrap up a section." }
+                    ];
+                    document.write(signposts.map(s => `
+                        <div class="p-4 bg-gray-50 border-2 rounded-xl flex justify-between items-center hover:border-yellow-400 transition shadow-sm">
+                            <div>
+                                <span class="block font-bold text-lg">"${s.w}"</span>
+                                <span class="text-xs text-gray-500">${s.p}</span>
+                            </div>
+                            <button onclick="speak('${s.w}')" class="p-3 rounded-full bg-black text-yellow-400 hover:scale-110 active:scale-95 transition">
+                                <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polygon points="11 5 6 9 2 9 2 15 6 15 11 19 11 5"></polygon><path d="M15.54 8.46a5 5 0 0 1 0 7.07"></path><path d="M19.07 4.93a10 10 0 0 1 0 14.14"></path></svg>
+                            </button>
+                        </div>
+                    `).join(''));
+                </script>
+            </div>
+        </section>
+
+        <!-- Tab 2: Data Cards -->
+        <section id="content-data" class="tab-content hidden">
+            <div class="mb-10 border-l-8 border-yellow-400 pl-6">
+                <h2 class="text-3xl font-bold">Academic Terminology Cards</h2>
+                <p class="text-gray-600 mt-2">Advanced vocabulary for theory and data description.</p>
+            </div>
+            <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
+                <script>
+                    const dataVocab = [
+                        { en: "Correlation", id: "Korelasi / Hubungan", cat: "Research" },
+                        { en: "Significant", id: "Signifikan / Berarti", cat: "Research" },
+                        { en: "Pathophysiology", id: "Patofisiologi", cat: "Medical" },
+                        { en: "Implementation", id: "Implementasi / Pelaksanaan", cat: "General" },
+                        { en: "Scalability", id: "Skalabilitas", cat: "Business" },
+                        { en: "Framework", id: "Kerangka Kerja", cat: "BK / Research" },
+                        { en: "Hypothesis", id: "Hipotesis / Dugaan", cat: "Research" },
+                        { en: "Intervention", id: "Intervensi / Tindakan", cat: "Clinical" },
+                        { en: "Fluctuation", id: "Fluktuasi / Naik-Turun", cat: "Data" }
+                    ];
+                    document.write(dataVocab.map(v => `
+                        <div class="flip-card" onclick="this.classList.toggle('active')">
+                            <div class="flip-card-inner">
+                                <div class="flip-card-front">
+                                    <span class="tag mb-2">${v.cat}</span>
+                                    <h3 class="text-xl font-bold">${v.en}</h3>
+                                </div>
+                                <div class="flip-card-back">
+                                    <h3 class="text-xl font-bold">${v.id}</h3>
+                                </div>
+                            </div>
+                        </div>
+                    `).join(''));
+                </script>
+            </div>
+        </section>
+
+        <!-- Tab 3: Quiz -->
+        <section id="content-quiz2" class="tab-content hidden">
+            <div id="quiz-area">
+                <div class="mb-10 border-l-8 border-yellow-400 pl-6">
+                    <h2 class="text-3xl font-bold">Lecture Delivery Quiz</h2>
+                    <p class="text-gray-600 mt-2">Test your ability to structure lectures and describe data.</p>
+                </div>
+                <div id="quiz-container" class="space-y-6"></div>
+                <button onclick="gradeQuiz()" class="w-full mt-10 black-bg text-yellow-400 py-5 rounded-xl font-bold text-xl hover:bg-gray-800 transition">SUBMIT ANSWERS</button>
+            </div>
+            <div id="result-overlay" class="hidden text-center p-10 bg-black text-yellow-400 rounded-2xl">
+                <h3 class="text-4xl font-bold mb-4">Unit 2 Mastery</h3>
+                <p id="score-text" class="text-2xl"></p>
+                <button onclick="location.reload()" class="mt-6 bg-yellow-400 text-black px-8 py-2 rounded-full font-bold">Retry</button>
+            </div>
+        </section>
+
+    </main>
+
+    <script>
+        const quizData = [
+            { q: "Which phrase transitions to a new topic?", a: ["In conclusion", "Moving on to", "Specifically"], c: 1 },
+            { q: "Use this phrase to introduce a visual aid:", a: ["Conversely", "To illustrate this", "Finally"], c: 1 },
+            { q: "Describing a graph: 'There is a ______ increase in data.'", a: ["Steady", "Silent", "Pedagogical"], c: 0 },
+            { q: "In Research, two variables that change together show a:", a: ["Framework", "Correlation", "Syllabus"], c: 1 },
+            { q: "Medical: 'This slide shows the _______ of Diabetes.'", a: ["Methodology", "Pathophysiology", "Entrepreneurship"], c: 1 },
+            { q: "Entrepreneurship: 'We need to discuss the _______ of this model.'", a: ["Scalability", "Ethics", "Orientation"], c: 0 },
+            { q: "Signposting: Use 'Conversely' to show:", a: ["Agreement", "Contrast", "A result"], c: 1 },
+            { q: "Research: A result that is unlikely to occur by chance is:", a: ["Variable", "Significant", "Quantitative"], c: 1 },
+            { q: "Data Description: The vertical line on a graph is the:", a: ["X-axis", "Y-axis", "Trendline"], c: 1 },
+            { q: "Conclusion: Best phrase to finish a point?", a: ["Starting with", "To summarize", "Specifically"], c: 1 }
+        ];
+
+        function renderQuiz() {
+            document.getElementById('quiz-container').innerHTML = quizData.map((item, i) => `
+                <div class="bg-gray-50 p-6 rounded-xl border-2 border-transparent hover:border-yellow-400 transition shadow-sm">
+                    <p class="font-bold mb-4 text-lg">${i+1}. ${item.q}</p>
+                    <div class="space-y-2">
+                        ${item.a.map((opt, idx) => `
+                            <label class="flex items-center p-3 bg-white border rounded-lg cursor-pointer hover:bg-yellow-50">
+                                <input type="radio" name="u2q${i}" value="${idx}" class="w-4 h-4 text-black">
+                                <span class="ml-3 font-medium">${opt}</span>
+                            </label>
+                        `).join('')}
+                    </div>
+                </div>
+            `).join('');
+        }
+
+        function switchTab(tab) {
+            document.querySelectorAll('.tab-content').forEach(c => c.classList.add('hidden'));
+            document.querySelectorAll('.tab-btn').forEach(b => b.classList.remove('tab-active'));
+            document.getElementById('content-' + tab).classList.remove('hidden');
+            document.getElementById('tab-' + tab).classList.add('tab-active');
+        }
+
+        function speak(text) {
+            window.speechSynthesis.cancel();
+            const u = new SpeechSynthesisUtterance(text);
+            u.lang = 'en-US'; u.rate = 0.85;
+            window.speechSynthesis.speak(u);
+        }
+
+        function gradeQuiz() {
+            let score = 0;
+            quizData.forEach((item, i) => {
+                const sel = document.querySelector(`input[name="u2q${i}"]:checked`);
+                if (sel && parseInt(sel.value) === item.c) score++;
+            });
+            document.getElementById('quiz-area').classList.add('hidden');
+            document.getElementById('result-overlay').classList.remove('hidden');
+            document.getElementById('score-text').innerText = `You scored ${score} out of 10!`;
+        }
+
+        window.onload = renderQuiz;
+    </script>
+</body>
+</html>
